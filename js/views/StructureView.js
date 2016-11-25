@@ -11,8 +11,7 @@ define(function(require) {
     id: "main",
 
     events: {
-      "tap #nav1": "myView",
-      "tap #nav2": "map"
+ 
     },
 
     initialize: function(options) {
@@ -24,6 +23,7 @@ define(function(require) {
     },
 
     render: function() {
+        console.log('porco giuda');
       // load the template
       this.el.innerHTML = this.template({});
       // cache a reference to the content element
@@ -37,12 +37,6 @@ define(function(require) {
     // generic go-back function
     goBack: function() {
       //window.history.back();
-    },
-
-    setActiveTabBarElement: function(elementId) {
-      // here we assume that at any time at least one tab bar element is active
-      document.getElementsByClassName("active")[0].classList.remove("active");
-      document.getElementById(elementId).classList.add("active");
     },
 
     map: function(event) {

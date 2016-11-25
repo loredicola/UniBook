@@ -5,8 +5,9 @@ define(function(require) {
   var Utils = require("utils");
   var MyModel = require("models/MyModel");
   var StructureView = require("views/StructureView");
-  var MyView = require("views/pages/MyView");
-  var MapView = require("views/pages/MapView");
+  var HomeView = require("views/pages/HomeView");
+  var ProfiloView = require("views/pages/ProfiloView");
+  var LoginView = require("views/pages/LoginView");
 
   var AppRouter = Backbone.Router.extend({
 
@@ -15,36 +16,39 @@ define(function(require) {
     routes: {
       // the default is the structure view
       "": "showStructure",
-      "myview": "myView",
-      "map": "map"
+      "homeview": "homeView",
+      "profilo": "showprofilo",
+      "login": "login"
     },
 
-    firstView: "myview",
+    firstView: "homeview",
 
     initialize: function(options) {
       this.currentView = undefined;
     },
 
-    myView: function() {
+    homeView: function() {
       // create a model with an arbitrary attribute for testing the template engine
       var model = new MyModel({
         key: "testValue",
         name: "ciao"
       });
       // create the view
-        var page = new MyView({
+        var page = new HomeView({
           model: model
         });
-        //trigger a custom event for data ready
-        instance.trigger('dataReady');
         // show the view
-        this.changePage(page, "slide", "up");
+        this.changePage(page);
     },
 
-    map: function() {
+    showprofilo: function() {
       // create the view and show it
-      var page = new MapView();
-      this.changePage(page, "flip", "top");
+      var page = new ProfiloView();
+      this.changePage(page);
+    },
+    login: function() {
+        var page = new LoginView();
+        this.changePage(page);
     },
     // load the structure view
     showStructure: function() {

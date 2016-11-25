@@ -4,19 +4,19 @@ define(function(require) {
   var MyModel = require("models/MyModel");
   var Utils = require("utils");
   
-  var MyView = Utils.Page.extend({
+  var HomeView = Utils.Page.extend({
 
-    constructorName: "MyView",
+    constructorName: "HomeView",
 
     model: MyModel,
 
     initialize: function() {
       //load the empty precompiled template if we don't have a data
-        this.template = Utils.templates.myview;
+        this.template = Utils.templates.homeview;
     },
 
-    id: "myview",
-    className: "i-g page",
+    id: "homeview",
+    className: "page",
 
     events: {
     },
@@ -27,6 +27,6 @@ define(function(require) {
     }
   });
 
-  return MyView;
+  return HomeView;
 
 });

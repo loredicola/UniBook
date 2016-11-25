@@ -1,7 +1,7 @@
 // here we put the paths to all the libraries and framework we will use
 require.config({
   paths: {
-    jquery: '../lib/zepto/zepto', // ../lib/jquery/jquery', 
+    jquery: '../lib/jquery/jquery', 
     underscore: '../lib/underscore/underscore',
     backbone: "../lib/backbone/backbone",
     text: '../lib/require/text',
@@ -106,3 +106,4 @@ var userManagement = (function () {
         }
     };
 })();
+
