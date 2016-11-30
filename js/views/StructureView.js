@@ -11,7 +11,7 @@ define(function(require) {
     id: "main",
 
     events: {
- 
+        "click #menu": "goToMenu"
     },
 
     initialize: function(options) {
@@ -39,8 +39,8 @@ define(function(require) {
       //window.history.back();
     },
 
-    map: function(event) {
-      Backbone.history.navigate("map", {
+    goToMenu: function(event) {
+      Backbone.history.navigate("login", {
         trigger: true
       });
     },

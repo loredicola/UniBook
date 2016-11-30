@@ -12,5 +12,7 @@ define({
     structure: "templates/structure.html",
     homeview: "templates/homeview.html",
     login: "templates/login.html",
-    profilo: "templates/profilo.html"
+    profilo: "templates/profilo.html",
+    modificaprofilo: "templates/modificaprofilo.html",
+    commentiview: "templates/commentiview.html"
 });
