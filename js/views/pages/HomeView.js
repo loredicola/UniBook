@@ -21,7 +21,8 @@ define(function(require) {
 
     events: {
         "click #mipiace": "incrementLike",
-        "click #commenti": "goToCommenti"
+        "click #commenti": "goToCommenti",
+        "click #new-post": "newPost"
     },
 
     render: function() {
@@ -34,6 +35,11 @@ define(function(require) {
     },
     goToCommenti: function(event){
         Backbone.history.navigate("commentiview", {
+        trigger: true
+      });
+    },
+    newPost: function(event){
+        Backbone.history.navigate("newpost", {
         trigger: true
       });
     }
