@@ -14,5 +14,6 @@ define({
     login: "templates/login.html",
     profilo: "templates/profilo.html",
     modificaprofilo: "templates/modificaprofilo.html",
-    commentiview: "templates/commentiview.html"
+    commentiview: "templates/commentiview.html",
+    menu: "templates/menu.html"
 });

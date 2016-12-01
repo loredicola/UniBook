@@ -10,6 +10,7 @@ define(function(require) {
   var LoginView = require("views/pages/LoginView");
   var ModificaProfiloView = require("views/pages/ModificaProfiloView");
   var CommentiView = require("views/pages/CommentiView");
+  var MenuView = require("views/pages/MenuView");
 
   var AppRouter = Backbone.Router.extend({
 
@@ -19,10 +20,11 @@ define(function(require) {
       // the default is the structure view
       "": "showStructure",
       "homeview": "homeView",
-      "profilo": "showprofilo",
+      "profilo": "showProfilo",
       "login": "login",
-      "modificaprofilo": "modificaprofilo",
-      "commentiview": "commentiview"
+      "modificaprofilo": "modificaProfilo",
+      "commentiview": "commentiView",
+      "menu": "showMenu"
     },
 
     firstView: "homeview",
@@ -45,7 +47,7 @@ define(function(require) {
         this.changePage(page);
     },
 
-    showprofilo: function() {
+    showProfilo: function() {
       // create the view and show it
       var page = new ProfiloView();
       this.changePage(page);
@@ -54,14 +56,19 @@ define(function(require) {
         var page = new LoginView();
         this.changePage(page);
     },
-    modificaprofilo: function() {
+    modificaProfilo: function() {
         // create the view and show it
       var page = new ModificaProfiloView();
       this.changePage(page);
     },
-    commentiview: function() {
+    commentiView: function() {
         // create the view and show it
       var page = new CommentiView();
+      this.changePage(page);
+    },
+    showMenu: function() {
+        // create the view and show it
+      var page = new MenuView();
       this.changePage(page);
     },
     // load the structure view

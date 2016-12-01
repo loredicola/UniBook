@@ -11,7 +11,8 @@ define(function(require) {
     id: "main",
 
     events: {
-        "click #menu": "goToMenu"
+        "click #menu": "goToMenu",
+        "click #home": "goToHome"
     },
 
     initialize: function(options) {
@@ -40,7 +41,13 @@ define(function(require) {
     },
 
     goToMenu: function(event) {
-      Backbone.history.navigate("login", {
+      Backbone.history.navigate("menu", {
+        trigger: true
+      });
+    },
+    
+    goToHome: function(event) {
+      Backbone.history.navigate("homeview", {
         trigger: true
       });
     },

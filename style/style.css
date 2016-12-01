@@ -330,18 +330,42 @@ button.commento-btn-pubblica {
 }
 #menu{
     float: right;
+    width: 25%;
+    height: 44px;
+    text-align: right;
 }
 #menu i{
-    font-size: 44px;
+    font-size: 43px;
 }
 .unibook-nav{
     background: #3b5998;
 }
 .title{
     margin-top: 0;
-    margin-right: 0;
-    margin-left: -60px;
-    padding-left: 80px;
+    width: 50%;
+    text-align: center;
+    font-weight: 800;
+}
+.ilmioprofilo{
+    width: 100%;
+    text-align: left;
+    height: 50px;
+    font-size: 20px;
+    margin-top: 15px;
+    border-bottom: 1px solid gainsboro;
+}
+#home{
+    float: left;
+    width: 25%;
+    height: 44px;
+}
+#home i{
+    font-size: 43px;
+}
+.title-container{
+    width: 50%;
+    height: 44px;
+    float: left;
 }
 
 /*INIZIO SEZIONE MATERIAL DESIGN LITE*/

@@ -35,7 +35,7 @@ require(['backbone', 'utils'], function(Backbone, Utils) {
 
     //N.B. commentare la funzione run(); e decommentare deviceready quando si esegue il deploy su device
     run();
-   // document.addEventListener("deviceready", run, false);
+//    document.addEventListener("deviceready", run, false);
 
     function run() {
 

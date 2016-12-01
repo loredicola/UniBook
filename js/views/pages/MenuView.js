@@ -4,35 +4,35 @@ define(function(require) {
   var MyModel = require("models/MyModel");
   var Utils = require("utils");
   
-  var ProfiloView = Utils.Page.extend({
+  var MenuView = Utils.Page.extend({
 
-    constructorName: "ProfiloView",
+    constructorName: "MenuView",
 
     model: MyModel,
 
     initialize: function() {
       //load the empty precompiled template if we don't have a data
-        this.template = Utils.templates.profilo;
+        this.template = Utils.templates.menu;
     },
 
-    id: "profilo",
+    id: "menu-view",
     className: "page",
 
     events: {
-        "click #modifica-profilo": "goToModificaProfilo"
+        "click #profilo": "goToProfilo"
     },
 
     render: function() {
       this.el.innerHTML = this.template({});
       return this;
     },
-    goToModificaProfilo: function(event) {
-        Backbone.history.navigate("modificaprofilo", {
+    goToProfilo: function(event) {
+      Backbone.history.navigate("profilo", {
         trigger: true
       });
     }
   });
 
-  return ProfiloView;
+  return MenuView;
 
 });
