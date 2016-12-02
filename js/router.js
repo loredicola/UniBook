@@ -11,7 +11,8 @@ define(function(require) {
   var ModificaProfiloView = require("views/pages/ModificaProfiloView");
   var CommentiView = require("views/pages/CommentiView");
   var MenuView = require("views/pages/MenuView");
-  var NewPostView = require("views/pages/NewPostView")
+  var NewPostView = require("views/pages/NewPostView");
+  var SignupView = require("views/pages/SignupView");
 
   var AppRouter = Backbone.Router.extend({
 
@@ -26,7 +27,8 @@ define(function(require) {
       "modificaprofilo": "modificaProfilo",
       "commentiview": "commentiView",
       "menu": "showMenu",
-      "newpost": "newPost"
+      "newpost": "newPost",
+      "signup": "signup"
     },
 
     firstView: "homeview",
@@ -76,6 +78,11 @@ define(function(require) {
     newPost: function() {
         // create the view and show it
       var page = new NewPostView();
+      this.changePage(page);
+    },
+    signup: function() {
+        // create the view and show it
+      var page = new SignupView();
       this.changePage(page);
     },
     // load the structure view

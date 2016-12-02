@@ -352,7 +352,7 @@ button.commento-btn-pubblica {
     height: 50px;
     font-size: 20px;
     margin-top: 15px;
-    border-bottom: 1px solid gainsboro;
+    border-bottom: 1px solid white;
 }
 #home{
     float: left;
@@ -366,6 +366,9 @@ button.commento-btn-pubblica {
     width: 50%;
     height: 44px;
     float: left;
+}
+.box-post form{
+    margin-top: 10px;
 }
 
 /*INIZIO SEZIONE MATERIAL DESIGN LITE*/

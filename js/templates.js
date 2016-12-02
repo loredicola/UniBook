@@ -16,5 +16,6 @@ define({
     modificaprofilo: "templates/modificaprofilo.html",
     commentiview: "templates/commentiview.html",
     menu: "templates/menu.html",
-    newpost: "templates/newpost.html"
+    newpost: "templates/newpost.html",
+    signup: "templates/signup.html"
 });
