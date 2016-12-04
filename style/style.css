@@ -370,6 +370,9 @@ button.commento-btn-pubblica {
 .box-post form{
     margin-top: 10px;
 }
+.group-material-input input{
+    color: black;
+}
 
 /*INIZIO SEZIONE MATERIAL DESIGN LITE*/
 .group-material-input {

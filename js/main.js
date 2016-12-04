@@ -75,7 +75,8 @@ localStorage.setItem('personalData', JSON.stringify({
     name: 'Lorenzo', 
     congome : "Di Cola",
     matricola : "219167",
-    facolta : "informatica"
+    facolta : "informatica",
+    user : "ciao"
 }
 ));
 localStorage.setItem('logged', 'yes');

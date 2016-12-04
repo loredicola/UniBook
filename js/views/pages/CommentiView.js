@@ -23,6 +23,7 @@ define(function(require) {
 
     render: function() {
       this.el.innerHTML = this.template({});
+      this.contentElement = this.$el.find('#content')[0];
       return this;
     }
   });
