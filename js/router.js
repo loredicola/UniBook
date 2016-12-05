@@ -13,6 +13,8 @@ define(function(require) {
   var MenuView = require("views/pages/MenuView");
   var NewPostView = require("views/pages/NewPostView");
   var SignupView = require("views/pages/SignupView");
+  var NotificaLikeView = require("views/pages/NotificaLikeView");
+  var NotificaCommentoView = require("views/pages/NotificaCommentoView")
 
   var AppRouter = Backbone.Router.extend({
 
@@ -28,7 +30,9 @@ define(function(require) {
       "commentiview": "commentiView",
       "menu": "showMenu",
       "newpost": "newPost",
-      "signup": "signup"
+      "signup": "signup",
+      "notificalike": "notificaLike",
+      "notificacommento": "notificaCommento"
     },
 
     firstView: "homeview",
@@ -83,6 +87,16 @@ define(function(require) {
     signup: function() {
         // create the view and show it
       var page = new SignupView();
+      this.changePage(page);
+    },
+    notificaLike: function() {
+      // create the view and show it
+      var page = new NotificaLikeView();
+      this.changePage(page);
+    },
+    notificaCommento: function() {
+      // create the view and show it
+      var page = new NotificaCommentoView();
       this.changePage(page);
     },
     // load the structure view

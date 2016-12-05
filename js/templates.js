@@ -17,5 +17,7 @@ define({
     commentiview: "templates/commentiview.html",
     menu: "templates/menu.html",
     newpost: "templates/newpost.html",
-    signup: "templates/signup.html"
+    signup: "templates/signup.html",
+    notificalike: "templates/notificalike.html",
+    notificacommento: "templates/notificacommento.html"
 });
