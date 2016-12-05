@@ -22,7 +22,9 @@ define(function(require) {
     events: {
         "click #mipiace": "incrementLike",
         "click #commenti": "goToCommenti",
-        "click #new-post": "newPost"
+        "click #new-post": "newPost",
+        "click #notifiche-commento": "notificheCommento",
+        "click #notifiche-like": "notificheLike"
     },
 
     render: function() {
@@ -40,6 +42,16 @@ define(function(require) {
     },
     newPost: function(event){
         Backbone.history.navigate("newpost", {
+        trigger: true
+      });
+    },
+    notificheCommento: function(event){
+        Backbone.history.navigate("notificacommento", {
+        trigger: true
+      });
+    },
+    notificheLike: function(event){
+        Backbone.history.navigate("notificalike", {
         trigger: true
       });
     }
