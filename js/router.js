@@ -14,7 +14,9 @@ define(function(require) {
   var NewPostView = require("views/pages/NewPostView");
   var SignupView = require("views/pages/SignupView");
   var NotificaLikeView = require("views/pages/NotificaLikeView");
-  var NotificaCommentoView = require("views/pages/NotificaCommentoView")
+  var NotificaCommentoView = require("views/pages/NotificaCommentoView");
+  
+  var MyModel = require("models/MyModel");
 
   var AppRouter = Backbone.Router.extend({
 
@@ -39,6 +41,8 @@ define(function(require) {
 
     initialize: function(options) {
       this.currentView = undefined;
+      this.myModel = new MyModel();
+      this.showStructure();
     },
 
     homeView: function() {
@@ -61,7 +65,9 @@ define(function(require) {
       this.changePage(page);
     },
     login: function() {
-        var page = new LoginView();
+        var page = new LoginView({
+            model: this.myModel
+        });
         this.changePage(page);
     },
     modificaProfilo: function() {
