@@ -3,7 +3,6 @@ define(function(require) {
   var $ = require("jquery");
   var Backbone = require("backbone");
   var Utils = require("utils");
-  var MyModel = require("models/MyModel");
   var StructureView = require("views/StructureView");
   var HomeView = require("views/pages/HomeView");
   var ProfiloView = require("views/pages/ProfiloView");
@@ -16,7 +15,7 @@ define(function(require) {
   var NotificaLikeView = require("views/pages/NotificaLikeView");
   var NotificaCommentoView = require("views/pages/NotificaCommentoView");
   
-  var MyModel = require("models/MyModel");
+  var MyUser = require("models/MyUser");
 
   var AppRouter = Backbone.Router.extend({
 
@@ -41,20 +40,13 @@ define(function(require) {
 
     initialize: function(options) {
       this.currentView = undefined;
-      this.myModel = new MyModel();
+      this.myUser = new MyUser();
       this.showStructure();
     },
 
     homeView: function() {
-      // create a model with an arbitrary attribute for testing the template engine
-      var model = new MyModel({
-        key: "testValue",
-        name: "ciao"
-      });
       // create the view
-        var page = new HomeView({
-          model: model
-        });
+        var page = new HomeView();
         // show the view
         this.changePage(page);
     },
@@ -66,7 +58,7 @@ define(function(require) {
     },
     login: function() {
         var page = new LoginView({
-            model: this.myModel
+            model: this.myUser
         });
         this.changePage(page);
     },

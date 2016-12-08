@@ -1,18 +1,19 @@
 define(function(require) {
 
   var Backbone = require("backbone");
-  var MyModel = require("models/MyModel");
   var Utils = require("utils");
+  
+  var MyUser = require("models/MyUser");
   
   var SignupView = Utils.Page.extend({
 
     constructorName: "SignupView",
 
-    model: MyModel,
 
     initialize: function() {
       //load the empty precompiled template if we don't have a data
         this.template = Utils.templates.signup;
+        this.myUser = new MyUser();
     },
 
     id: "signup-view",
@@ -31,9 +32,10 @@ define(function(require) {
     
     signup: function() {
         var query = Utils.serializeForm(this.$form);
-        var user = query.user;
-        var password = query.psw;
-        var rePassword = query.psw1;
+        this.myUser.set("user", query.user);
+        this.myUser.set("password", query.psw);
+        this.myUser.set("rePassword", query.psw1);
+        console.log(this.myUser.attributes);
         
     }
   });

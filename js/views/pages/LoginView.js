@@ -2,7 +2,6 @@ define(function(require) {
 
     var $ = require("jquery");
     var Backbone = require("backbone");
-    var MyModel = require("models/MyModel");
     var Utils = require("utils");
   
     var LoginView = Utils.Page.extend({
@@ -31,8 +30,9 @@ define(function(require) {
     
     login: function() {
         var query = Utils.serializeForm(this.$form);
-        var user = query.user;
-        var pwd = query.password;
+        this.model.set("user", query.user);
+        this.model.set("pwd", query.password);
+        console.log(this.model.attributes);
         
     },
     
