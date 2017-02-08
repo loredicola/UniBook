@@ -1,9 +1,10 @@
 define(function(require) {
 
-  var Backbone = require("backbone");
-  var Utils = require("utils");
+    var $ = require("jquery");
+    var Backbone = require("backbone");
+    var Utils = require("utils");
   
-  var ModificaProfiloView = Utils.Page.extend({
+    var ModificaProfiloView = Utils.Page.extend({
 
     constructorName: "ModificaProfiloView",
 
@@ -17,12 +18,30 @@ define(function(require) {
     className: "page",
 
     events: {
+        "click .modificaProfilo-button.salva": "modificaProfilo"
     },
 
     render: function() {
-      this.el.innerHTML = this.template({});
+      this.el.innerHTML = this.template({model: this.model});
       this.contentElement = this.$el.find('#content')[0];
+      this.$name = this.$el.find("input[name=name]");
+      this.$surname = this.$el.find("input[name=surname]");
+      this.$date = this.$el.find("input[name=date]");
+      this.$luogo = this.$el.find("input[name=luogo]");
+      this.$email = this.$el.find("input[name=email]");
+      this.$phone = this.$el.find("input[name=phone]");
       return this;
+    },
+    
+    modificaProfilo: function() {
+        var data = {};
+        data.name = this.$name.val();
+        data.surname = this.$surname.val();
+        data.date = this.$date.val();
+        data.luogo = this.$luogo.val();
+        data.email = this.$email.val();
+        data.phone = this.$phone.val();
+        router.myUser.set("visibleDataProfilo", data);
     }
   });
 

@@ -53,7 +53,9 @@ define(function(require) {
 
     showProfilo: function() {
       // create the view and show it
-      var page = new ProfiloView();
+      var page = new ProfiloView({
+          model: this.myUser
+      });
       this.changePage(page);
     },
     login: function() {
@@ -64,7 +66,9 @@ define(function(require) {
     },
     modificaProfilo: function() {
         // create the view and show it
-      var page = new ModificaProfiloView();
+      var page = new ModificaProfiloView({
+          model: this.myUser
+      });
       this.changePage(page);
     },
     commentiView: function() {

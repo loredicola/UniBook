@@ -21,10 +21,24 @@ define(function(require) {
     },
 
     render: function() {
-      this.el.innerHTML = this.template({});
-      this.contentElement = this.$el.find('#content')[0];
+      var that = this;
+//        this.model.getInfo()
+//            .then(function () {
+//                hideLoading();
+                that.el.innerHTML = that.template({model: that.model});
+//                return that;
+//            })
+//            .fail(function () {
+//                hideLoading();
+//                showDialog({
+//                    title: 'Errore',
+//                    text: 'Errore durante il carcamento del profilo',
+//                    cancelable: true
+//                });
+//            });
       return this;
     },
+    
     goToModificaProfilo: function(event) {
         Backbone.history.navigate("modificaprofilo", {
         trigger: true

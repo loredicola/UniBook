@@ -33,7 +33,6 @@ define(function(require) {
         this.model.set("user", query.user);
         this.model.set("pwd", query.password);
         console.log(this.model.attributes);
-        
     },
     
     signup: function(event) {
