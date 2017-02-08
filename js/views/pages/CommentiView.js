@@ -17,12 +17,24 @@ define(function(require) {
     className: "page",
 
     events: {
+        "click #pubblicaCommento" : "pubblicaCommento"
     },
 
     render: function() {
       this.el.innerHTML = this.template({});
       this.contentElement = this.$el.find('#content')[0];
+      this.$form = this.$el.find('#formPubblicaCommento');
       return this;
+    },
+    
+    pubblicaCommento: function(){
+        var query = Utils.serializeForm(this.$form);
+        if(query.commento !== ''){
+            console.log('il commento è presente');
+        }
+        else{
+            console.log('nessun commento');
+        }
     }
   });
 
