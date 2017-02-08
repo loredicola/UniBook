@@ -6,9 +6,7 @@ define(function(require) {
 		constructorName: "MyUser",
             
             getInfo: function () {
-            var that = this;
-            var defer = $.Deferred();
-            return defer.promise();
+            
             }
 	});
 
