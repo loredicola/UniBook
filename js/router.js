@@ -17,6 +17,7 @@ define(function(require) {
   
   var MyUser = require("models/MyUser");
   var MyModel = require("models/MyModel");
+  var OUser = require("models/OUser");
   var MyCollection = require("collections/MyCollection");
 
   var AppRouter = Backbone.Router.extend({
@@ -60,13 +61,13 @@ define(function(require) {
     showProfilo: function(username) {
         username = username || false;
         var model;
-//        if(!username || this.myUser.get('username') === username){
-//            model = this.myUser;
-//        } else{
-//            model = new OUser({
-//                'username' : username
-//            });
-//        }
+        if(!username || this.myUser.get('user') === username){
+            model = this.myUser;
+        } else{
+            model = new OUser({
+                'username' : username
+            });
+        }
       var page = new ProfiloView({
           model: model
       });
