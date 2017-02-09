@@ -2,7 +2,6 @@ define(function(require) {
 
   var Backbone = require("backbone");
   var Utils = require("utils");
-  var like = 0;
   
   var HomeView = Utils.Page.extend({
 
@@ -18,7 +17,7 @@ define(function(require) {
     className: "page",
 
     events: {
-        "click #mipiace": "incrementLike",
+        "click #mipiace": "addMipiace",
         "click #commenti": "goToCommenti",
         "click #new-post": "newPost",
         "click #notifiche-commento": "notificheCommento",
@@ -30,18 +29,17 @@ define(function(require) {
       return this;
     },
     
-    incrementLike: function(){
-        like++;
+    addMipiace: function(){
+        $('#mipiace').attr("disabled", "disabled");
+        $('#mipiace').css("color", "red");
     },
     goToCommenti: function(event){
         Backbone.history.navigate("commentiview", {
         trigger: true
       });
     },
-    newPost: function(event){
-        Backbone.history.navigate("newpost", {
-        trigger: true
-      });
+    newPost: function(){
+        Backbone.history.navigate("newpost/new");
     },
     notificheCommento: function(event){
         Backbone.history.navigate("notificacommento", {

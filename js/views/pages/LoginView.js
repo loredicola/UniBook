@@ -32,7 +32,14 @@ define(function(require) {
         var query = Utils.serializeForm(this.$form);
         this.model.set("user", query.user);
         this.model.set("pwd", query.password);
-        console.log(this.model.attributes);
+//        this.model.login()
+//                .then(function(res){
+//                    console.log('login effettuato');
+//        })
+//                .fail(function(res){
+//                    console.log('login errato');
+//        });
+        console.log(this.model);
     },
     
     signup: function(event) {

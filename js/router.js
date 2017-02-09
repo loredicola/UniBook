@@ -16,6 +16,8 @@ define(function(require) {
   var NotificaCommentoView = require("views/pages/NotificaCommentoView");
   
   var MyUser = require("models/MyUser");
+  var MyModel = require("models/MyModel");
+  var MyCollection = require("collections/MyCollection");
 
   var AppRouter = Backbone.Router.extend({
 
@@ -25,12 +27,12 @@ define(function(require) {
       // the default is the structure view
       "": "showStructure",
       "homeview": "homeView",
-      "profilo": "showProfilo",
+      "profilo/:username": "showProfilo",
       "login": "login",
       "modificaprofilo": "modificaProfilo",
       "commentiview": "commentiView",
       "menu": "showMenu",
-      "newpost": "newPost",
+      "newpost/:id": "newPost",
       "signup": "signup",
       "notificalike": "notificaLike",
       "notificacommento": "notificaCommento"
@@ -41,20 +43,32 @@ define(function(require) {
     initialize: function(options) {
       this.currentView = undefined;
       this.myUser = new MyUser();
+      this.myCollection = new MyCollection();
       this.showStructure();
     },
 
     homeView: function() {
       // create the view
-        var page = new HomeView();
+        var page = new HomeView({
+            collection: this.myCollection,
+            model: this.myUser
+        });
         // show the view
         this.changePage(page);
     },
 
-    showProfilo: function() {
-      // create the view and show it
+    showProfilo: function(username) {
+        username = username || false;
+        var model;
+//        if(!username || this.myUser.get('username') === username){
+//            model = this.myUser;
+//        } else{
+//            model = new OUser({
+//                'username' : username
+//            });
+//        }
       var page = new ProfiloView({
-          model: this.myUser
+          model: model
       });
       this.changePage(page);
     },
@@ -81,10 +95,12 @@ define(function(require) {
       var page = new MenuView();
       this.changePage(page);
     },
-    newPost: function() {
-        // create the view and show it
-      var page = new NewPostView();
-      this.changePage(page);
+    newPost: function(id) {
+       
+       var model = new MyModel(); 
+       model.set("idAdd", id);
+       var page = new NewPostView({model: model});
+       this.changePage(page);
     },
     signup: function() {
         // create the view and show it

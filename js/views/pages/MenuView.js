@@ -26,7 +26,7 @@ define(function(require) {
       return this;
     },
     goToProfilo: function(event) {
-      Backbone.history.navigate("profilo", {
+      Backbone.history.navigate("profilo/"+router.myUser.get("user"), {
         trigger: true
       });
     }
