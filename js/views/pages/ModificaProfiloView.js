@@ -42,6 +42,20 @@ define(function(require) {
         data.email = this.$email.val();
         data.phone = this.$phone.val();
         router.myUser.set("visibleDataProfilo", data);
+//        router.myUser.update()
+//                    .then(function () {
+//                        hideLoading();
+                        router.myNavigate("profilo/" + router.myUser.get("username"));
+
+//                    })
+//                    .fail(function () {
+//                        hideLoading();
+//                        showDialog({
+//                            title: 'Errore upload',
+//                            text: 'Errore durante il l aggiornamento del profilo utente',
+//                            cancelable: true
+//                        });
+//                    });
     }
   });
 
