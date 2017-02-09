@@ -97,9 +97,10 @@ define(function(require) {
       this.changePage(page);
     },
     newPost: function(id) {
-       
        var model = new MyModel(); 
-       model.set("idAdd", id);
+       if(!(id==="new")){
+            model.set("idAdd", id);
+       }
        var page = new NewPostView({model: model});
        this.changePage(page);
     },

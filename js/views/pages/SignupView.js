@@ -35,7 +35,24 @@ define(function(require) {
         this.myUser.set("user", query.user);
         this.myUser.set("password", query.psw);
         this.myUser.set("rePassword", query.psw1);
-        console.log(this.myUser.attributes);
+//        this.myUser.signup()
+//                .then(function(res){
+//                    hideLoading();
+//                    humane.info("Registrazione avvenuta con successo");
+//                    showDialog({
+//                        title: 'Registrazione completata',
+//                        text: 'Da ora puoi accede all applicazion con le tue credenziali',
+//                        cancelable: true
+//                    });
+                    router.navigate("login");
+//        })
+//                .fail(function(res){
+//                    showDialog({
+//                        title: 'Erroe durante la registrazione',
+//                        text: 'Scpiacenti riprova',
+//                        cancelable: true
+//                    });
+//        });
         
     }
   });

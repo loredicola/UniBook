@@ -45,7 +45,7 @@ define(function(require) {
 //        router.myUser.update()
 //                    .then(function () {
 //                        hideLoading();
-                        router.myNavigate("profilo/" + router.myUser.get("username"));
+                        router.navigate("profilo/" + router.myUser.get("username"));
 
 //                    })
 //                    .fail(function () {

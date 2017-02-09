@@ -11,6 +11,7 @@ define(function(require) {
     initialize: function() {
       //load the empty precompiled template if we don't have a data
         this.template = Utils.templates.newpost;
+        this.on("inTheDOM", this.rendered);
     },
 
     id: "newpost-view",
@@ -22,7 +23,16 @@ define(function(require) {
     render: function() {
       this.el.innerHTML = this.template({});
       this.contentElement = this.$el.find('#content')[0];
+      this.$form = this.$el.find("formPubblicaPost");
+      this.$post = this.$el.find("textarea[name=post]");
       return this;
+    },
+    
+    rendered: function(){
+        var that = this;
+        if(this.model.get("idAdd")){
+            
+        }
     }
   });
 
