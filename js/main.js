@@ -11,6 +11,7 @@ require.config({
     leaflet: '../lib/leaflet/leaflet',
     spin: '../lib/spin/spin.min',
     preloader: '../lib/preloader/pre-loader',
+    jqueryDialog: '../lib/jqueryModalDialogPluginMaterial/mdl-jquery-modal-dialog',
     utils: '../lib/utils/utils'
   },
   shim: {
@@ -20,6 +21,9 @@ require.config({
     'underscore': {
       exports: '_'
     },
+    'jqueryDialog': {
+            deps: ['jquery']
+        },
     'handlebars': {
       exports: 'Handlebars'
     },

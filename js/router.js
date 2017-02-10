@@ -31,7 +31,7 @@ define(function(require) {
       "profilo/:username": "showProfilo",
       "login": "login",
       "modificaprofilo": "modificaProfilo",
-      "commentiview": "commentiView",
+      "commentiview/:id": "commentiView",
       "menu": "showMenu",
       "newpost/:id": "newPost",
       "signup": "signup",
@@ -91,9 +91,14 @@ define(function(require) {
       var page = new CommentiView();
       this.changePage(page);
     },
-    showMenu: function() {
+    showMenu: function(id) {
         // create the view and show it
-      var page = new MenuView();
+        var model = new MyModel({
+            idAdd : id
+        });
+      var page = new MenuView({
+          model: model
+      });
       this.changePage(page);
     },
     newPost: function(id) {
