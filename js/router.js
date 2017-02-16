@@ -117,7 +117,7 @@ define(function(require) {
     notificaLike: function() {
       // create the view and show it
       var page = new NotificaLikeView();
-      this.changePage(page);
+      this.changePage(page, "flip", "rotate");
     },
     notificaCommento: function() {
       // create the view and show it

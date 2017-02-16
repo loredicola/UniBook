@@ -35,16 +35,24 @@ define(function(require) {
         this.myUser.set("user", query.user);
         this.myUser.set("password", query.psw);
         this.myUser.set("rePassword", query.psw1);
-//        this.myUser.signup()
-//                .then(function(res){
-//                    hideLoading();
-//                    humane.info("Registrazione avvenuta con successo");
-//                    showDialog({
-//                        title: 'Registrazione completata',
-//                        text: 'Da ora puoi accede all applicazion con le tue credenziali',
-//                        cancelable: true
-//                    });
+        if(query.psw === query.psw1){
+            $.post("http://localhost:4242/api/signup", {
+              "user": query.user,  
+              "password": query.psw,  
+              "repassword": query.psw1
+            }).done(function(res){
+                    console.log("ci siamo");
                     router.navigate("login");
+                })
+                .fail(function(res){
+                    console.log("non funziona");
+                });
+        }
+        else{
+            alert("le password non coincidono");
+        }
+                
+                    
 //        })
 //                .fail(function(res){
 //                    showDialog({
