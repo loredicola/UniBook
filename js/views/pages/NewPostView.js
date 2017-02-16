@@ -7,7 +7,6 @@ define(function(require) {
 
     constructorName: "NewPostView",
 
-
     initialize: function() {
       //load the empty precompiled template if we don't have a data
         this.template = Utils.templates.newpost;
@@ -18,12 +17,12 @@ define(function(require) {
     className: "page",
 
     events: {
+        "click #pubblicaPost": "newPost"
     },
 
     render: function() {
       this.el.innerHTML = this.template({});
       this.contentElement = this.$el.find('#content')[0];
-      this.$form = this.$el.find("formPubblicaPost");
       this.$post = this.$el.find("textarea[name=post]");
       return this;
     },
@@ -33,6 +32,21 @@ define(function(require) {
         if(this.model.get("idAdd")){
             
         }
+    },
+    
+    newPost: function(){
+        var post = this.$post.val();
+        $.post("http://localhost:4242/api/newpost", {
+              "post": post
+            }).done(function(res){
+                    alert("post pubblicato con successo");
+                    Backbone.history.navigate("homeview", {
+                      trigger: true
+                    });
+                })
+                .fail(function(res){
+                    console.log("non funziona");
+                });
     }
   });
 

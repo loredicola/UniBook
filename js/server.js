@@ -34,7 +34,10 @@ var User = new Schema({
     repassword: { type: String, required:true }
 });
 var userModel = mongoose.model('User', User);
-
+var Post = new Schema({
+    body: {type: String, required:true}
+});
+var postModel = mongoose.model('Post', Post);
 
 app.post('/api/signup', function (req, res){
   var user;
@@ -65,6 +68,22 @@ app.post('/api/login', function (req, res, next) {
       req.session.user = username;
       return res.send('Logged In!');
    });
+});
+app.post('/api/newpost', function (req, res){
+  var post;
+  console.log("POST: ");
+  console.log(req.body);
+  post = new postModel({
+    body: req.body.post
+  });
+  post.save(function (err) {
+    if (!err) {
+        return console.log('created!');
+    } else {
+      return console.log(err);
+    }
+  });
+  return res.send(post);
 });
 
 app.get('/api', function (req, res) {
