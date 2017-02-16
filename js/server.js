@@ -14,6 +14,13 @@ mongoose.connect('mongodb://localhost/unibookdb');
 
 app.configure(function () {
   app.use(express.bodyParser());
+  app.use(express.session({
+    cookieName: 'session',
+    secret: 'loredicola',
+    duration: 30 * 60 * 1000,
+    sctiveDuration: 50 * 60 * 1000,
+    cookie: { maxAge: 24 * 60 * 60 * 1000 }
+}));
 //  app.use(express.methodOverride());
 //  app.use(app.router);
 //  app.use(express.static(path.join(application_root, "public")));
@@ -48,12 +55,17 @@ app.post('/api/signup', function (req, res){
   return res.send(user);
 });
 
-app.post('/login',
-    passport.authenticate('local'),
-    function(req, res){
-        res.send('autenticazione avvenuta');
-        res.redirect('/profilo/'+ req.user.username);
-    });
+app.post('/api/login', function (req, res, next) {
+   var username = req.body.user;
+   var password = req.body.password;
+
+   userModel.findOne({username: username, password: password}, function(err, user) {
+      if(err) return next(err);
+      if(!user) return res.send('Not logged in!');
+      req.session.user = username;
+      return res.send('Logged In!');
+   });
+});
 
 app.get('/api', function (req, res) {
   res.send('Ecomm API is running');

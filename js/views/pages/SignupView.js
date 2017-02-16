@@ -42,13 +42,20 @@ define(function(require) {
               "repassword": query.psw1
             }).done(function(res){
                     console.log("ci siamo");
-                    router.navigate("login");
+                    Backbone.history.navigate("login", {
+                      trigger: true
+                    });
                 })
                 .fail(function(res){
                     console.log("non funziona");
                 });
         }
         else{
+//            showDialog({
+//                        title: 'Password errata',
+//                        text: 'Le password non coincidono',
+//                        cancelable: true
+//                    });
             alert("le password non coincidono");
         }
                 

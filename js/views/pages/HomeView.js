@@ -65,7 +65,9 @@ define(function(require) {
       });
     },
     newPost: function(){
-        Backbone.history.navigate("newpost/new");
+        Backbone.history.navigate("newpost/new", {
+            trigger: true
+        });
     },
     notificheCommento: function(event){
         Backbone.history.navigate("notificacommento", {

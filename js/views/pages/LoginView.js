@@ -32,14 +32,19 @@ define(function(require) {
         var query = Utils.serializeForm(this.$form);
         this.model.set("user", query.user);
         this.model.set("pwd", query.password);
-//        this.model.login()
-//                .then(function(res){
-//                    console.log('login effettuato');
-//        })
-//                .fail(function(res){
-//                    console.log('login errato');
-//        });
-        console.log(this.model);
+            $.post("http://localhost:4242/api/login", {
+              "user": query.user,  
+              "password": query.password
+            }).always(function(res){
+                if(res === "Logged In!"){
+                    console.log(res);
+                    Backbone.history.navigate("homeview", {
+                      trigger: true
+                    });
+                } else {
+                    alert("username o password errate");
+                }
+                });
     },
     
     signup: function(event) {
