@@ -17,7 +17,7 @@ define(function(require) {
     className: "page",
 
     events: {
-        "click #pubblicaPost": "newPost"
+        "click #pubblicaPost": "pubblicaPost"
     },
 
     render: function() {
@@ -34,7 +34,7 @@ define(function(require) {
         }
     },
     
-    newPost: function(){
+    pubblicaPost: function(){
         var post = this.$post.val();
         $.post("http://localhost:4242/api/newpost", {
               "post": post
