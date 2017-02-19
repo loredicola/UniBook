@@ -2,6 +2,7 @@ define(function(require) {
 
   var Backbone = require("backbone");
   var Utils = require("utils");
+  var myModel = require("models/MyModel");
   
   var newPostView = Utils.Page.extend({
 
@@ -35,9 +36,13 @@ define(function(require) {
     },
     
     pubblicaPost: function(){
-        var post = this.$post.val();
+        var post = {};
+        post.descrizione = this.$post.val();
+        post.autore = router.myUser.get("user");
+        this.model.set(post);
         $.post("http://localhost:4242/api/newpost", {
-              "post": post
+              "post": post.descrizione,
+              "autore": post.autore
             }).done(function(res){
                     alert("post pubblicato con successo");
                     Backbone.history.navigate("homeview", {

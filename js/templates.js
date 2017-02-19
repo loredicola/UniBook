@@ -19,5 +19,6 @@ define({
     newpost: "templates/newpost.html",
     signup: "templates/signup.html",
     notificalike: "templates/notificalike.html",
-    notificacommento: "templates/notificacommento.html"
+    notificacommento: "templates/notificacommento.html",
+    boxpost: "templates/boxpost.html"
 });

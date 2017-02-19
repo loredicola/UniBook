@@ -26,7 +26,7 @@ define(function(require) {
 
     routes: {
       // the default is the structure view
-      "": "showStructure",
+      "": "login",
       "homeview": "homeView",
       "profilo/:username": "showProfilo",
       "login": "login",
@@ -103,9 +103,6 @@ define(function(require) {
     },
     newPost: function(id) {
        var model = new MyModel(); 
-       if(!(id==="new")){
-            model.set("idAdd", id);
-       }
        var page = new NewPostView({model: model});
        this.changePage(page);
     },

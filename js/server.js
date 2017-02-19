@@ -35,7 +35,8 @@ var User = new Schema({
 });
 var userModel = mongoose.model('User', User);
 var Post = new Schema({
-    body: {type: String, required:true}
+    body: {type: String, required:true},
+    autore: {type: String}
 });
 var postModel = mongoose.model('Post', Post);
 
@@ -74,7 +75,8 @@ app.post('/api/newpost', function (req, res){
   console.log("POST: ");
   console.log(req.body);
   post = new postModel({
-    body: req.body.post
+    body: req.body.post,
+    autore: req.body.autore
   });
   post.save(function (err) {
     if (!err) {
@@ -84,6 +86,17 @@ app.post('/api/newpost', function (req, res){
     }
   });
   return res.send(post);
+});
+
+app.get('/api/posts', function (req, res) {
+    postModel.find({}, function (err, docs) {
+        if(!err){
+            res.json(docs);
+        }else{
+            res.send(err);
+        }
+        
+    });
 });
 
 app.get('/api', function (req, res) {

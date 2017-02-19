@@ -8,19 +8,6 @@ define(function(require) {
 
     constructorName: "HomeView",
 
-
-    initialize: function() {
-      //load the empty precompiled template if we don't have a data
-        this.template = Utils.templates.homeview;
-        this.collectionPost = new myCollection();
-        this.collectionPost.on({
-            'add': (this.onAddItem).bind(this)
-        });
-    },
-
-    id: "homeview",
-    className: "page",
-
     events: {
         "click #mipiace": "addMipiace",
         "click #commenti": "goToCommenti",
@@ -28,6 +15,21 @@ define(function(require) {
         "click #notifiche-commento": "notificheCommento",
         "click #notifiche-like": "notificheLike"
     },
+    
+    initialize: function() {
+      //load the empty precompiled template if we don't have a data
+        this.template = Utils.templates.homeview;
+        this.templateBoxPost = Utils.templates.boxpost;
+        this.collectionPost = new myCollection();
+        this.collectionPost.on({
+            'add': (this.onAddItem).bind(this)
+        });
+        this.on("inTheDOM", this.rendered);
+    },
+
+    id: "homeview",
+    className: "page",
+
 
     render: function() {
       this.el.innerHTML = this.template();
@@ -35,12 +37,15 @@ define(function(require) {
       return this;
     },
     
+    rendered: function(){
+        this.populate();
+    },
+    
     populate: function(){
-        var that = this;
-//        this.collectionPost.list();
+        this.collectionPost.list();
     },
     onAddItem: function(model){
-      var item = this.template({
+      var item = this.templateBoxPost({
           model: model
       });
       var $item = $(item);
