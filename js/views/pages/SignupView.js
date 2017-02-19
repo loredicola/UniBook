@@ -51,12 +51,11 @@ define(function(require) {
                 });
         }
         else{
-//            showDialog({
-//                        title: 'Password errata',
-//                        text: 'Le password non coincidono',
-//                        cancelable: true
-//                    });
-            alert("le password non coincidono");
+            showDialog({
+                        title: 'Password errata',
+                        text: 'Le password non coincidono',
+                        cancelable: true
+                    });
         }
                 
                     

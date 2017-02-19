@@ -34,7 +34,7 @@ require.config({
 });
 app={};
 // We launch the App
-require(['backbone', 'utils'], function(Backbone, Utils) {
+require(['backbone', 'utils', 'jqueryDialog'], function(Backbone, Utils) {
   require(['preloader', 'router'], function(PreLoader, AppRouter) {
 
     //N.B. commentare la funzione run(); e decommentare deviceready quando si esegue il deploy su device

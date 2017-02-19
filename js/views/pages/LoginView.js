@@ -42,7 +42,11 @@ define(function(require) {
                       trigger: true
                     });
                 } else {
-                    alert("username o password errate");
+                    showDialog({
+                        title: 'Login errato',
+                        text: 'Username o password errate',
+                        cancelable: true
+                    });
                 }
                 });
     },

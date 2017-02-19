@@ -21,9 +21,30 @@ define(function(require) {
     },
 
     render: function() {
-        this.el.innerHTML = this.template({model: this.model});
-      return this;
+        var that = this;
+        this.model.getInfo()
+            .then(function () {
+                hideLoading();
+                that.el.innerHTML = that.template({model: that.model});
+                that.rendered();
+                return that;
+            })
+            .fail(function () {
+                showDialog({
+                    title: 'Errore',
+                    text: 'Errore durante il carcamento del profilo',
+                    cancelable: true
+                });
+            });
     },
+    
+    rendered: function () {
+            this.$edit = this.$el.find(".editIcon");
+            this.$imagePlaceHolder = this.$el.find(".imagePlaceHolder");
+            if (this.model.get("username") !== router.myUser.get("username")) {
+                this.$edit.css("display", "none");
+            }
+        },
     
     goToModificaProfilo: function(event) {
         Backbone.history.navigate("modificaprofilo", {
