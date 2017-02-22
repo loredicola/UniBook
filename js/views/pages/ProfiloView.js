@@ -23,10 +23,10 @@ define(function(require) {
     render: function() {
         var that = this;
         $.post("http://localhost:4242/api/profilo", {
-            "user": this.model.get("username")
+            "user": this.model.get("user")
         })
             .then(function (res) {
-                that.model.set(res.data);
+                that.model.set(res[0]);
                 that.el.innerHTML = that.template({model: that.model});
                 that.rendered();
                 return that;
