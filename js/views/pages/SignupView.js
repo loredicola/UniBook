@@ -32,14 +32,27 @@ define(function(require) {
     
     signup: function() {
         var query = Utils.serializeForm(this.$form);
+        console.log(query);
         this.myUser.set("user", query.user);
         this.myUser.set("password", query.psw);
         this.myUser.set("rePassword", query.psw1);
+        this.myUser.set("nome", query.nome);
+        this.myUser.set("cognome", query.cognome);
+        this.myUser.set("datanascita", query.datanascita);
+        this.myUser.set("luogonascita", query.luogonascita);
+        this.myUser.set("email", query.email);
+        this.myUser.set("telefono", query.telefono);
         if(query.psw === query.psw1){
             $.post("http://localhost:4242/api/signup", {
               "user": query.user,  
               "password": query.psw,  
-              "repassword": query.psw1
+              "repassword": query.psw1,
+              "nome": query.nome,
+              "cognome": query.cognome,
+              "datanascita": query.datanascita,
+              "luogonascita": query.luogonascita,
+              "email": query.email,
+              "telefono": query.telefono
             }).done(function(res){
                     console.log("ci siamo");
                     Backbone.history.navigate("login", {

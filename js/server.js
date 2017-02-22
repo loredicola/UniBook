@@ -29,9 +29,15 @@ app.configure(function () {
 var Schema = mongoose.Schema;  
 
 var User = new Schema({  
-    username: { type: String, required:true },  
+    username: { type: String, required:true, unique:true },  
     password: { type: String, required:true},  
-    repassword: { type: String, required:true }
+    repassword: { type: String, required:true },
+    nome: { type: String, required:true },
+    cognome: { type: String, required:true },
+    datanascita: { type: String, required:true },
+    luogonascita: { type: String, required:true },
+    email: { type: String, required:true },
+    telefono: { type: String, required:true }
 });
 var userModel = mongoose.model('User', User);
 var Post = new Schema({
@@ -47,7 +53,13 @@ app.post('/api/signup', function (req, res){
   user = new userModel({
     username: req.body.user,
     password: req.body.password,
-    repassword: req.body.repassword
+    repassword: req.body.repassword,
+    nome: req.body.nome,
+    cognome: req.body.cognome,
+    datanascita: req.body.datanascita,
+    luogonascita: req.body.luogonascita,
+    email: req.body.email,
+    telefono: req.body.telefono
   });
   user.save(function (err) {
     if (!err) {
@@ -96,6 +108,18 @@ app.get('/api/posts', function (req, res) {
             res.send(err);
         }
         
+    });
+});
+
+app.post('/api/profilo', function (req, res){
+    var username = req.body.user;
+    userModel.find({username: username}, function(err, data){
+        if(!err){
+            res.send(data);
+            return data;
+        } else {
+            return res.send(err);
+        }
     });
 });
 

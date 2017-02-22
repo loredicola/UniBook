@@ -22,9 +22,11 @@ define(function(require) {
 
     render: function() {
         var that = this;
-        this.model.getInfo()
-            .then(function () {
-                hideLoading();
+        $.post("http://localhost:4242/api/profilo", {
+            "user": this.model.get("username")
+        })
+            .then(function (res) {
+                that.model.set(res.data);
                 that.el.innerHTML = that.template({model: that.model});
                 that.rendered();
                 return that;
