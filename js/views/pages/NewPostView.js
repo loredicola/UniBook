@@ -44,7 +44,11 @@ define(function(require) {
               "post": post.descrizione,
               "autore": post.autore
             }).done(function(res){
-                    alert("post pubblicato con successo");
+                    showDialog({
+                        title: 'Post pubblicato',
+                        text: 'Il post è stato pubblicato con successo',
+                        cancelable: true
+                    });
                     Backbone.history.navigate("homeview", {
                       trigger: true
                     });

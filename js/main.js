@@ -6,7 +6,7 @@ require.config({
     backbone: "../lib/backbone/backbone",
     text: '../lib/require/text',
     async: '../lib/require/async',
-    handlebars: '../lib/handlebars/handlebars',
+//    handlebars: '../lib/handlebars/handlebars',
     templates: '../templates',
     leaflet: '../lib/leaflet/leaflet',
     spin: '../lib/spin/spin.min',
@@ -24,9 +24,9 @@ require.config({
     'jqueryDialog': {
             deps: ['jquery']
         },
-    'handlebars': {
-      exports: 'Handlebars'
-    },
+//    'handlebars': {
+//      exports: 'Handlebars'
+//    },
     'leaflet': {
       exports: 'L'
     }
