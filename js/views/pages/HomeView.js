@@ -9,7 +9,7 @@ define(function(require) {
     constructorName: "HomeView",
 
     events: {
-        "click #mipiace": "addMipiace",
+        "click .mipiace": "addMipiace",
         "click #commenti": "goToCommenti",
         "click #new-post": "newPost",
         "click #notifiche-commento": "notificheCommento",
