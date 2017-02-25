@@ -53,7 +53,23 @@ define(function(require) {
       $item.data("model", model);
       this.$container.append($item);
     },
-    addMipiace: function(){
+    addMipiace: function(event){
+        event.preventDefault();
+        event.stopPropagation();
+        var target = $(event.target);
+        while(!target.hasClass("container-post")){
+            target = target.parent();
+        }
+        var data = target.data("idann");
+        console.log(data);
+        $.post("http://localhost:4242/api/like", {
+                "id": data
+            }).done(function(res){
+                    alert("bene");
+                })
+                .fail(function(res){
+                    alert("non funziona");
+                }); 
         $('#mipiace').attr("disabled", "disabled");
         $('#mipiace').css("color", "red");
     },
@@ -61,7 +77,7 @@ define(function(require) {
         event.preventDefault();
         event.stopPropagation();
         var target = $(event.target);
-        while(!target.hasClass("commenti")){
+        while(!target.hasClass("container-post")){
             target = target.parent();
         }
         var data = target.data("idann");

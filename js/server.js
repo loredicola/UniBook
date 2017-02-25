@@ -37,12 +37,13 @@ var User = new Schema({
     datanascita: { type: String, required:true },
     luogonascita: { type: String, required:true },
     email: { type: String, required:true },
-    telefono: { type: String, required:true }
+    telefono: { type: Number, required:true }
 });
 var userModel = mongoose.model('User', User);
 var Post = new Schema({
     body: {type: String, required:true},
-    autore: {type: String}
+    autore: {type: String},
+    like: {type: Number}
 });
 var postModel = mongoose.model('Post', Post);
 
@@ -88,7 +89,8 @@ app.post('/api/newpost', function (req, res){
   console.log(req.body);
   post = new postModel({
     body: req.body.post,
-    autore: req.body.autore
+    autore: req.body.autore,
+    like: 0
   });
   post.save(function (err) {
     if (!err) {
@@ -119,6 +121,26 @@ app.post('/api/profilo', function (req, res){
             return data;
         } else {
             return res.send(err);
+        }
+    });
+});
+
+app.post('/api/like', function (req, res) {
+    var id = req.body.id;
+    console.log(id);
+    postModel.findById(id, function(err, post){
+        if(!err){
+            post.like++;
+            post.save(function (err) {
+                if (!err) {
+                    return console.log('aggiornato');
+                } else {
+                  return console.log(err);
+                }
+            });
+            console.log(post.like);
+        } else{
+            console.log(err);;
         }
     });
 });

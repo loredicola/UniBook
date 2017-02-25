@@ -24,7 +24,6 @@ define(function(require) {
     },
 
     render: function() {
-        console.log('porco giuda');
       // load the template
       this.el.innerHTML = this.template({});
       // cache a reference to the content element
