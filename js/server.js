@@ -133,9 +133,9 @@ app.post('/api/like', function (req, res) {
             post.like++;
             post.save(function (err) {
                 if (!err) {
-                    return console.log('aggiornato');
+                    return res.send("like aggiornati");
                 } else {
-                  return console.log(err);
+                  return res.send(err);
                 }
             });
             console.log(post.like);

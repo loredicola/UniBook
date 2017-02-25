@@ -68,7 +68,10 @@ define(function(require) {
                     alert("bene");
                 })
                 .fail(function(res){
-                    alert("non funziona");
+                    showDialog({
+                       title: "Like",
+                       text: "Si è verificato un errore,si prega di riprovare più tardi"
+                    });
                 }); 
         $('#mipiace').attr("disabled", "disabled");
         $('#mipiace').css("color", "red");
