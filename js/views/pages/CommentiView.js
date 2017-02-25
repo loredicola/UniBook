@@ -35,6 +35,19 @@ define(function(require) {
         else{
             console.log('nessun commento');
         }
+        $.post("http://localhost:4242/api/comment", {
+              "idcomm": this.model.get('idAdd'),
+              "comm": query.commento
+            }).done(function(res){
+                    showDialog({
+                        title: 'Commento pubblicato',
+                        text: 'Il commento è stato pubblicato con successo',
+                        cancelable: true
+                    });
+                })
+                .fail(function(res){
+                    console.log("non funziona");
+                });
     }
   });
 

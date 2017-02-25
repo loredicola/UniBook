@@ -86,9 +86,12 @@ define(function(require) {
       });
       this.changePage(page);
     },
-    commentiView: function() {
+    commentiView: function(id) {
         // create the view and show it
-      var page = new CommentiView();
+        var model = new MyModel({idAdd : id});
+      var page = new CommentiView({
+          model : model
+      });
       this.changePage(page);
     },
     showMenu: function(id) {

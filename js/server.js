@@ -46,6 +46,11 @@ var Post = new Schema({
     like: {type: Number}
 });
 var postModel = mongoose.model('Post', Post);
+var Comment = new Schema({
+    idcomm: {type: String, required:true},
+    comm: {type: String, required:true}
+});
+var commentModel = mongoose.model('Comment', Comment);
 
 app.post('/api/signup', function (req, res){
   var user;
@@ -145,8 +150,20 @@ app.post('/api/like', function (req, res) {
     });
 });
 
-app.get('/api', function (req, res) {
-  res.send('Ecomm API is running');
+app.post('/api/comment', function (req, res){
+  var comment;
+  comment = new commentModel({
+    idcomm: req.body.idcomm,
+    comm: req.body.comm
+  });
+  console.log(comment);
+  comment.save(function (err) {
+    if (!err) {
+        return res.send('commento salvato');
+    } else {
+      return res.send(err);
+    }
+  });
 });
 
 // Launch server
