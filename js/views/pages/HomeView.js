@@ -99,7 +99,6 @@ define(function(require) {
       });
     },
     notificheLike: function(){
-        console.log(user+id);
         Backbone.history.navigate("notificalike", {
         trigger: true
       });
