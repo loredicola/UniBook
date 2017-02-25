@@ -65,7 +65,9 @@ define(function(require) {
         $.post("http://localhost:4242/api/like", {
                 "id": data
             }).done(function(res){
-                    alert("bene");
+                    console.log(res);
+                    $('#'+data).css("color", "yellow");
+                    $('#'+data).attr("disabled", "disabled");
                 })
                 .fail(function(res){
                     showDialog({
@@ -73,8 +75,6 @@ define(function(require) {
                        text: "Si è verificato un errore,si prega di riprovare più tardi"
                     });
                 }); 
-        $('#mipiace').attr("disabled", "disabled");
-        $('#mipiace').css("color", "red");
     },
     goToCommenti: function(event){
         event.preventDefault();
@@ -98,7 +98,8 @@ define(function(require) {
         trigger: true
       });
     },
-    notificheLike: function(event){
+    notificheLike: function(){
+        console.log(user+id);
         Backbone.history.navigate("notificalike", {
         trigger: true
       });
