@@ -166,8 +166,9 @@ app.post('/api/comment', function (req, res){
   });
 });
 
-app.get('/api/comments', function (req, res) {
-    commentModel.find({}, function (err, docs) {
+app.post('/api/comments', function (req, res) {
+    var idAdd = req.body.idAdd;
+    commentModel.find({idcomm:idAdd}, function (err, docs) {
         if(!err){
             return res.json(docs);
         }else{

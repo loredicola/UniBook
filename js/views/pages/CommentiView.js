@@ -18,7 +18,6 @@ define(function(require) {
             'add': (this.onAddItem).bind(this)
         });
         this.rendered();
-        console.log("almeno qua");
     },
 
     id: "commenti",
@@ -41,7 +40,8 @@ define(function(require) {
     },
     
     populate: function() {
-        this.collectionComment.listComment();
+        var idAdd= this.model.get("idAdd");
+        this.collectionComment.listComment(idAdd);
     },
     
     onAddItem: function(model) {

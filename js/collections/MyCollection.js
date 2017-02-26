@@ -20,9 +20,11 @@ define(function(require) {
                 });   
             },
             
-            listComment: function() {
+            listComment: function(idAdd) {
+                var idAdd = idAdd;
                 var that = this;
-                $.get("http://localhost:4242/api/comments", {
+                $.post("http://localhost:4242/api/comments", {
+                    idAdd: idAdd
             }).done(function(res){
                     that.add(res);
                 })
