@@ -20,5 +20,6 @@ define({
     signup: "templates/signup.html",
     notificalike: "templates/notificalike.html",
     notificacommento: "templates/notificacommento.html",
-    boxpost: "templates/boxpost.html"
+    boxpost: "templates/boxpost.html",
+    boxcommenti: "templates/boxcommenti.html"
 });

@@ -18,6 +18,17 @@ define(function(require) {
                 .fail(function(res){
                     console.log("non funziona");
                 });   
+            },
+            
+            listComment: function() {
+                var that = this;
+                $.get("http://localhost:4242/api/comments", {
+            }).done(function(res){
+                    that.add(res);
+                })
+                .fail(function(res){
+                    console.log("non funziona");
+                });
             }
                 
 	});

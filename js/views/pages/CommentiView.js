@@ -2,6 +2,7 @@ define(function(require) {
 
   var Backbone = require("backbone");
   var Utils = require("utils");
+  var myCollection = require("collections/MyCollection");
   
   var CommentiView = Utils.Page.extend({
 
@@ -11,6 +12,13 @@ define(function(require) {
     initialize: function() {
       //load the empty precompiled template if we don't have a data
         this.template = Utils.templates.commentiview;
+        this.templateBoxCommenti = Utils.templates.boxcommenti;
+        this.collectionComment = new myCollection();
+        this.collectionComment.on({
+            'add': (this.onAddItem).bind(this)
+        });
+        this.rendered();
+        console.log("almeno qua");
     },
 
     id: "commenti",
@@ -21,21 +29,35 @@ define(function(require) {
     },
 
     render: function() {
-      this.el.innerHTML = this.template({});
+      this.el.innerHTML = this.template();
       this.contentElement = this.$el.find('#content')[0];
       this.$form = this.$el.find('#formPubblicaCommento');
+      this.$container = this.$el.find('.container-my');
       return this;
+    },
+    
+    rendered: function() {
+        this.populate();
+    },
+    
+    populate: function() {
+        this.collectionComment.listComment();
+    },
+    
+    onAddItem: function(model) {
+      var item = this.templateBoxCommenti({
+          model : model
+      });
+      var $item = $(item);
+      model.$el = $item;
+      $item.data("model", model);
+      this.$container.append($item);
     },
     
     pubblicaCommento: function(){
         var query = Utils.serializeForm(this.$form);
         if(query.commento !== ''){
-            console.log('il commento è presente');
-        }
-        else{
-            console.log('nessun commento');
-        }
-        $.post("http://localhost:4242/api/comment", {
+            $.post("http://localhost:4242/api/comment", {
               "idcomm": this.model.get('idAdd'),
               "comm": query.commento
             }).done(function(res){
@@ -48,6 +70,13 @@ define(function(require) {
                 .fail(function(res){
                     console.log("non funziona");
                 });
+        }
+        else{
+            showDialog({
+                title: "Errore",
+                text: "Se vuoi commentare devi inserire prima il commento"
+            });
+        }
     }
   });
 

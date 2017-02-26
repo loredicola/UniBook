@@ -166,6 +166,17 @@ app.post('/api/comment', function (req, res){
   });
 });
 
+app.get('/api/comments', function (req, res) {
+    commentModel.find({}, function (err, docs) {
+        if(!err){
+            return res.json(docs);
+        }else{
+            return res.send(err);
+        }
+        
+    });
+});
+
 // Launch server
 
 app.listen(4242);

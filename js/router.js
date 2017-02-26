@@ -90,7 +90,8 @@ define(function(require) {
         // create the view and show it
         var model = new MyModel({idAdd : id});
       var page = new CommentiView({
-          model : model
+          model : model,
+          collection: this.myCollection
       });
       this.changePage(page);
     },
