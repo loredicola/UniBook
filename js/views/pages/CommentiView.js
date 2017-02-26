@@ -66,6 +66,9 @@ define(function(require) {
                         text: 'Il commento è stato pubblicato con successo',
                         cancelable: true
                     });
+                    Backbone.history.navigate("homeview", {
+                        trigger: true
+                    });
                 })
                 .fail(function(res){
                     console.log("non funziona");

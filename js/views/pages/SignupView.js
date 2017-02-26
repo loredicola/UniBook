@@ -9,7 +9,6 @@ define(function(require) {
 
     constructorName: "SignupView",
 
-
     initialize: function() {
       //load the empty precompiled template if we don't have a data
         this.template = Utils.templates.signup;
@@ -32,7 +31,6 @@ define(function(require) {
     
     signup: function() {
         var query = Utils.serializeForm(this.$form);
-        console.log(query);
         this.myUser.set("user", query.user);
         this.myUser.set("password", query.psw);
         this.myUser.set("rePassword", query.psw1);
@@ -70,17 +68,16 @@ define(function(require) {
                         cancelable: true
                     });
         }
-                
-                    
-//        })
-//                .fail(function(res){
-//                    showDialog({
-//                        title: 'Erroe durante la registrazione',
-//                        text: 'Scpiacenti riprova',
-//                        cancelable: true
-//                    });
-//        });
-        
+        localStorage.setItem('personalData', JSON.stringify({
+            username: query.user, 
+            nome : query.nome,
+            cognome: query.cognome,
+            datanascita: query.datanascita,
+            luogonascita: query.luogonascita,
+            email: query.email,
+            telefono: query.telefono
+            })
+        );
     }
   });
 

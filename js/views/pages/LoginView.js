@@ -32,6 +32,7 @@ define(function(require) {
         var query = Utils.serializeForm(this.$form);
         this.model.set("user", query.user);
         this.model.set("pwd", query.password);
+        localStorage.setItem('logged', 'yes');
             $.post("http://localhost:4242/api/login", {
               "user": query.user,  
               "password": query.password

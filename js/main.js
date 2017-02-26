@@ -68,22 +68,12 @@ require(['backbone', 'utils', 'jqueryDialog'], function(Backbone, Utils) {
        instance = Utils.PubSubEvent.getInstance();
  
         //chiamata per il singleton dello user management
-        var instance1 = userManagement.getInstance();
-        console.log(instance1, 'utente 1 local storage');
+        var instanceUser = userManagement.getInstance();
+        console.log(instanceUser, 'utente');
     }
   });
 });
 //user management
-// set data to localstorage
-localStorage.setItem('personalData', JSON.stringify({
-    name: 'Lorenzo', 
-    congome : "Di Cola",
-    matricola : "219167",
-    facolta : "informatica",
-    user : "ciao"
-}
-));
-localStorage.setItem('logged', 'yes');
 // singleton to read data in localstorage
 var userManagement = (function () {
     var instance;
