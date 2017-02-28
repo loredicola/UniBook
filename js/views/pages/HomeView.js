@@ -66,7 +66,12 @@ define(function(require) {
                 "id": data
             }).done(function(res){
                     console.log(res);
-                    $('#'+data).css("color", "yellow");
+                    showDialog({
+                        title: "Like",
+                        text: "Il like è stato inserito correttamente",
+                        cancellable: "true"
+                    });
+//                    $('#'+data).css("color", "yellow");
                     $('#'+data).attr("disabled", "disabled");
                 })
                 .fail(function(res){
