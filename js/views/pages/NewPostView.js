@@ -33,26 +33,30 @@ define(function(require) {
         this.pubblicaFoto();
     },
     
-    pubblicaPost: function(){
+    pubblicaPost: function(e){
         var post = {};
         post.descrizione = this.$post.val();
         post.autore = router.myUser.get("user");
         this.model.set(post);
-//        UPLOAD FOTO
-//        console.log("qua");
-//        $("#image").change(function() {
-//            if (this.files && this.files[0]){
-//                var reader = new FileReader();
-//                reader.onload = mio;
-//                reader.readAsDataURL(this.files[0]);
-//                console.log(reader);
-//            }
-//        function mio(e){
-//            console.log(e.target.result);
-//            this.image = e.target.result;
-//            $("#imgpost").attr('src', e.target.result);
-//        }
-//        });
+//        UPLOAD FOTO CON DISPOSITIVO
+//            e.preventDefault();
+//            e.stopPropagation();
+//            var that = this;
+//            var success = function (image) {
+//              
+//            };
+//            var error = function (error) {
+//                alert(error);
+//            };
+//            navigator.camera.getPicture(success, error,
+//                    {
+//                        quality: 50,
+//                        allowEdit: true,
+//                        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
+//                        destinationType: navigator.camera.DestinationType.DATA_URL,
+//                        mediaType: Camera.MediaType.PICTURE,
+//                        encodingType: Camera.EncodingType.JPEG
+//                    })
 //        CHIAMATA AL SERVER
         $.post("http://localhost:4242/api/newpost", {
               "post": post.descrizione,
