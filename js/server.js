@@ -48,7 +48,8 @@ var Post = new Schema({
     body: {type: String},
     autore: {type: String},
     like: {type: Number},
-    idimg: {type: Number}
+    img: {type: String}
+//    idimg: {type: Number}
 });
 var postModel = mongoose.model('Post', Post);
 var Comment = new Schema({
@@ -102,50 +103,48 @@ app.post('/api/login', function (req, res, next) {
 app.post('/api/newpost', function (req, res){
   var post;
   var image;
-  console.log(req.body);
-  if(req.body.img){
-    postModel.find({}).limit(1).sort({$natural: -1}).exec(function(err, post){
-        if(!err){
-            lastPostId = post[0].idimg;
-            lastPostId++;
-            post = new postModel({
-            body: req.body.post,
-            autore: req.body.autore,
-            like: 0,
-            idimg: lastPostId || 0
-          });
-          image = new imageModel({
-             idpost: lastPostId,
-             img: req.body.img
-          });
-          post.save(function (err) {
-            if (!err) {
-                return console.log('created!');
-            } else {
-              return console.log(err);
-            }
-          });
-          image.save(function(err){
-              if(!err){
-        //          return res.send("image stored");
-              } else{
-//                  return res.send(err);
-              }
-          });
-          return res.send(post);
-        }
-        else{
-            res.send(err);
-        }
-            });
-  } else{
-//  console.log("POST: ");
-//  console.log(req.body.post);
-//  console.log(lastPostId+"dopo incremento");
+  console.log(req.body.img);
+//  if(req.body.img){
+//    postModel.find({}).limit(1).sort({$natural: -1}).exec(function(err, post){
+//        if(!err){
+//            lastPostId = post[0].idimg;
+//            lastPostId++;
+//            post = new postModel({
+//            body: req.body.post,
+//            autore: req.body.autore,
+//            like: 0,
+//            idimg: lastPostId || 0
+//          });
+//          image = new imageModel({
+//             idpost: lastPostId,
+//             img: req.body.img
+//          });
+//          post.save(function (err) {
+//            if (!err) {
+//                return console.log('created!');
+//            } else {
+//              return console.log(err);
+//            }
+//          });
+//          image.save(function(err){
+//              if(!err){
+//        //          return res.send("image stored");
+//              } else{
+////                  return res.send(err);
+//              }
+//          });
+//          return res.send(post);
+//        }
+//        else{
+//            res.send(err);
+//        }
+//            });
+//  } else{
     post = new postModel({
               body: req.body.post,
               autore: req.body.autore,
-              like: 0
+              like: 0,
+              img: req.body.img || 0
             });
         post.save(function (err) {
           if (!err) {
@@ -155,12 +154,11 @@ app.post('/api/newpost', function (req, res){
           }
         });
         return res.send(post);
-  }
+//  }
 });
 
 app.get('/api/posts', function (req, res) {
     postModel.find({}, function (err, docs) {
-        console.log(docs);
         if(!err){
             res.json(docs);
         }else{
