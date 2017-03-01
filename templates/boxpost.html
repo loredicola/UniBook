@@ -7,7 +7,9 @@
             <%=model.get('body')%>
         </div>
         <div class="foto-stato">
-            <img id="imgpost" src="<%=model.get('img')%>">
+            <%if(model.get('img')){%>
+            <img id="imgpost" src="<%=model.get('img')%>" height="200px">
+            <%}%>
         </div>
     </div>
     <div class="box-like-commenti">
