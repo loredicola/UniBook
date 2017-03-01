@@ -74,7 +74,6 @@ define(function(require) {
     },
     
     pubblicaFoto: function() {
-        console.log("qua");
         $("#image").change(function() {
             if (this.files && this.files[0]){
                 var reader = new FileReader();
@@ -84,7 +83,6 @@ define(function(require) {
             }
         function mio(e){
             image = e.target.result;
-            $("#imgpost").attr('src', e.target.result);
         }
         });
         
