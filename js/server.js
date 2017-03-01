@@ -3,6 +3,9 @@ var express = require("express");
 var path = require("path");
 var mongoose = require('mongoose');
 var passport = require('passport');
+var fileUpload = require('express-fileupload');
+var mv = require('mv');
+lastPostId = 0;
 
 var app = express();
 
@@ -21,6 +24,7 @@ app.configure(function () {
     sctiveDuration: 50 * 60 * 1000,
     cookie: { maxAge: 24 * 60 * 60 * 1000 }
 }));
+    app.use(fileUpload());
 //  app.use(express.methodOverride());
 //  app.use(app.router);
 //  app.use(express.static(path.join(application_root, "public")));
@@ -41,9 +45,10 @@ var User = new Schema({
 });
 var userModel = mongoose.model('User', User);
 var Post = new Schema({
-    body: {type: String, required:true},
+    body: {type: String},
     autore: {type: String},
-    like: {type: Number}
+    like: {type: Number},
+    idimg: {type: Number}
 });
 var postModel = mongoose.model('Post', Post);
 var Comment = new Schema({
@@ -51,6 +56,12 @@ var Comment = new Schema({
     comm: {type: String, required:true}
 });
 var commentModel = mongoose.model('Comment', Comment);
+
+var Image = new Schema({
+   idpost: {type: Number},
+   img: {type: String}
+});
+var imageModel = mongoose.model('Image', Image);
 
 app.post('/api/signup', function (req, res){
   var user;
@@ -90,25 +101,66 @@ app.post('/api/login', function (req, res, next) {
 });
 app.post('/api/newpost', function (req, res){
   var post;
-  console.log("POST: ");
+  var image;
   console.log(req.body);
-  post = new postModel({
-    body: req.body.post,
-    autore: req.body.autore,
-    like: 0
-  });
-  post.save(function (err) {
-    if (!err) {
-        return console.log('created!');
-    } else {
-      return console.log(err);
-    }
-  });
-  return res.send(post);
+  if(req.body.img){
+    postModel.find({}).limit(1).sort({$natural: -1}).exec(function(err, post){
+        if(!err){
+            lastPostId = post[0].idimg;
+            lastPostId++;
+            post = new postModel({
+            body: req.body.post,
+            autore: req.body.autore,
+            like: 0,
+            idimg: lastPostId || 0
+          });
+          image = new imageModel({
+             idpost: lastPostId,
+             img: req.body.img
+          });
+          post.save(function (err) {
+            if (!err) {
+                return console.log('created!');
+            } else {
+              return console.log(err);
+            }
+          });
+          image.save(function(err){
+              if(!err){
+        //          return res.send("image stored");
+              } else{
+//                  return res.send(err);
+              }
+          });
+          return res.send(post);
+        }
+        else{
+            res.send(err);
+        }
+            });
+  } else{
+//  console.log("POST: ");
+//  console.log(req.body.post);
+//  console.log(lastPostId+"dopo incremento");
+    post = new postModel({
+              body: req.body.post,
+              autore: req.body.autore,
+              like: 0
+            });
+        post.save(function (err) {
+          if (!err) {
+              return console.log('created!');
+          } else {
+            return console.log(err);
+          }
+        });
+        return res.send(post);
+  }
 });
 
 app.get('/api/posts', function (req, res) {
     postModel.find({}, function (err, docs) {
+        console.log(docs);
         if(!err){
             res.json(docs);
         }else{
@@ -176,6 +228,21 @@ app.post('/api/comments', function (req, res) {
         }
         
     });
+});
+
+app.post('/api/upload', function (req, res){
+   var buf = Buffer.from(req.body.files, 'base64');
+   console.log(buf);
+    if(!buf){
+       return res.send('Nessun file da caricare');
+   } 
+   var img = buf;
+//   img.mv('/img/filename.jpg', function(err){
+//      if(err){
+//         return res.send(err); 
+//      } 
+//      res.send('file caricato');
+//   });
 });
 
 // Launch server

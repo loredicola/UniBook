@@ -3,6 +3,7 @@ define(function(require) {
   var Backbone = require("backbone");
   var Utils = require("utils");
   var myModel = require("models/MyModel");
+  image = {};
   
   var newPostView = Utils.Page.extend({
 
@@ -29,10 +30,7 @@ define(function(require) {
     },
     
     rendered: function(){
-        var that = this;
-        if(this.model.get("idAdd")){
-            
-        }
+        this.pubblicaFoto();
     },
     
     pubblicaPost: function(){
@@ -40,9 +38,26 @@ define(function(require) {
         post.descrizione = this.$post.val();
         post.autore = router.myUser.get("user");
         this.model.set(post);
+//        UPLOAD FOTO
+//        console.log("qua");
+//        $("#image").change(function() {
+//            if (this.files && this.files[0]){
+//                var reader = new FileReader();
+//                reader.onload = mio;
+//                reader.readAsDataURL(this.files[0]);
+//                console.log(reader);
+//            }
+//        function mio(e){
+//            console.log(e.target.result);
+//            this.image = e.target.result;
+//            $("#imgpost").attr('src', e.target.result);
+//        }
+//        });
+//        CHIAMATA AL SERVER
         $.post("http://localhost:4242/api/newpost", {
               "post": post.descrizione,
-              "autore": post.autore
+              "autore": post.autore,
+              "img": image
             }).done(function(res){
                     showDialog({
                         title: 'Post pubblicato',
@@ -56,7 +71,25 @@ define(function(require) {
                 .fail(function(res){
                     console.log("non funziona");
                 });
+    },
+    
+    pubblicaFoto: function() {
+        console.log("qua");
+        $("#image").change(function() {
+            if (this.files && this.files[0]){
+                var reader = new FileReader();
+                reader.onload = mio;
+                reader.readAsDataURL(this.files[0]);
+                console.log(reader);
+            }
+        function mio(e){
+            image = e.target.result;
+            $("#imgpost").attr('src', e.target.result);
+        }
+        });
+        
     }
+    
   });
 
   return newPostView;
