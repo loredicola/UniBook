@@ -11,6 +11,7 @@ define(function(require) {
     initialize: function() {
       //load the empty precompiled template if we don't have a data
         this.template = Utils.templates.login;
+        
     },
 
     id: "login",
@@ -25,6 +26,12 @@ define(function(require) {
       this.el.innerHTML = this.template({});
       this.contentElement = this.$el.find('#content')[0];
       this.$form = this.$el.find("#loginForm");
+//      var home = $('#home');
+//        var menu = $('#menu');
+//        var title = $('.title');
+//        home.hide();
+//        menu.hide();
+//        title.css('width', '100%');
       return this;
     },
     
